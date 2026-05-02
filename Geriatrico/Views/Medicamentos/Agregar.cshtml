@@ -1,0 +1,45 @@
+﻿@model Geriatrico.Models.Dominio.Medicamento
+
+<div class="container mt-4">
+    <h2>Nuevo Medicamento</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre Genérico</label>
+                <input asp-for="NombreGenerico" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Presentación</label>
+                <input asp-for="Presentacion" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Laboratorio</label>
+                <input asp-for="Laboratorio" class="form-control" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

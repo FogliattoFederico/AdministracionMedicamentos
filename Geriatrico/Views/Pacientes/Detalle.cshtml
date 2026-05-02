@@ -1,0 +1,90 @@
+﻿@model Geriatrico.Models.ViewModels.PacienteDetalleViewModel
+
+<div class="container mt-4">
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+  
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h4>@Model.Paciente.Apellido, @Model.Paciente.Nombre</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>DNI:</strong> @Model.Paciente.Dni</p>
+                    <p><strong>Fecha de nacimiento:</strong> @Model.Paciente.FechaNac.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Edad:</strong> @Model.Paciente.Edad años</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Habitación:</strong> @Model.Paciente.Habitacion</p>
+                    <p><strong>Obra Social:</strong> @Model.Paciente.ObraSocial</p>
+                    <p><strong>Nro. Afiliado:</strong> @Model.Paciente.NroAfiliado</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Contacto:</strong> @Model.Paciente.ContactoNombre</p>
+                    <p><strong>Teléfono:</strong> @Model.Paciente.ContactoTel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Medicamentos activos</h4>
+        <a asp-controller="MedicamentosPacientes" asp-action="Agregar" asp-route-pacienteId="@Model.Paciente.Id" class="btn btn-primary">+ Agregar Medicamento</a>
+    </div>
+
+    @if (!Model.Medicamentos.Any())
+    {
+        <div class="alert alert-info">El paciente no tiene medicamentos asignados.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Medicamento</th>
+                    <th>Presentación</th>
+                    <th>Dosis</th>
+                    <th>Frecuencia</th>
+                    <th>Horarios</th>
+                    <th>Vía</th>
+                    <th>Indicación</th>
+                    <th>Prescripto por</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var m in Model.Medicamentos)
+                {
+                    <tr>
+                        <td>@m.NombreMedicamento</td>
+                        <td>@m.Presentacion</td>
+                        <td>@m.Dosis</td>
+                        <td>@m.Frecuencia</td>
+                        <td>@m.Horarios</td>
+                        <td>@m.Via</td>
+                        <td>@m.Indicacion</td>
+                        <td>@m.PrescriptoPor</td>
+                        <td>
+                            <a asp-controller="MedicamentosPacientes" asp-action="Modificar" asp-route-id="@m.Id" class="btn btn-sm btn-warning">Editar</a>
+                            <a asp-controller="MedicamentosPacientes" asp-action="Eliminar" asp-route-id="@m.Id" asp-route-pacienteId="@Model.Paciente.Id" class="btn btn-sm btn-danger"
+                               onclick="return confirm('¿Quitar este medicamento?')">Quitar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <a asp-controller="Administraciones" asp-action="HojaDiaria" asp-route-pacienteId="@Model.Paciente.Id" class="btn btn-info mt-3">Hoja Diaria</a>
+    <a asp-action="Imprimir" asp-route-id="@Model.Paciente.Id"
+       class="btn btn-secondary mt-3" target="_blank">🖨️ Imprimir hoja</a>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Volver</a>
+    
+   
+</div>

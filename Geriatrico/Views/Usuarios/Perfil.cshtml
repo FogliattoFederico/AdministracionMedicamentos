@@ -1,0 +1,56 @@
+﻿@model Geriatrico.Models.ViewModels.PerfilViewModel
+
+<div class="container mt-4">
+    <h2>Mi perfil</h2>
+
+    @if (TempData["Exito"] != null)
+    {
+        <div class="alert alert-success">@TempData["Exito"]</div>
+    }
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <input asp-for="Id" type="hidden" />
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <hr />
+        <h5>Cambiar contraseña <small class="text-muted fs-6">(opcional)</small></h5>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nueva contraseña</label>
+                <input asp-for="NuevaPassword" type="password" class="form-control" />
+                <span asp-validation-for="NuevaPassword" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Confirmar contraseña</label>
+                <input asp-for="ConfirmarPassword" type="password" class="form-control" />
+                <span asp-validation-for="ConfirmarPassword" class="text-danger"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+    @section Scripts {
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
+</div>

@@ -1,0 +1,124 @@
+﻿@model Geriatrico.Models.ViewModels.HojaDiariaViewModel
+
+<div class="container mt-4">
+
+    @if (TempData["Exito"] != null)
+    {
+        <div class="alert alert-success">@TempData["Exito"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Hoja Diaria — @Model.Paciente.Apellido, @Model.Paciente.Nombre</h2>
+        <a asp-controller="Pacientes" asp-action="Detalle" asp-route-id="@Model.Paciente.Id" class="btn btn-secondary">Volver</a>
+    </div>
+
+   
+    <form method="get" class="mb-4">
+        <input type="hidden" name="pacienteId" value="@Model.Paciente.Id" />
+        <div class="d-flex align-items-center gap-3">
+            <label class="form-label mb-0">Fecha:</label>
+            <input type="date" name="fecha" value="@Model.Fecha.ToString("yyyy-MM-dd")" class="form-control w-auto" />
+            <button type="submit" class="btn btn-primary">Ver</button>
+        </div>
+    </form>
+
+    @if (!Model.Administraciones.Any())
+    {
+        <div class="alert alert-info">No hay medicamentos programados para esta fecha.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Medicamento</th>
+                    <th>Dosis</th>
+                    <th>Hora programada</th>
+                    <th>Tomado</th>
+                    <th>Hora administrada</th>
+                    <th>Administrado por</th>
+                    <th>Observaciones</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model.Administraciones)
+                {
+                    <tr class="@(a.Tomado ? "table-success" : "")">
+                        <td>@a.NombreMedicamento</td>
+                        <td>@a.Dosis</td>
+                        <td>@a.HoraProgramada</td>
+                        <td>
+                            @if (a.Tomado)
+                            {
+                                <span class="badge bg-success">Sí</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">No</span>
+                            }
+                        </td>
+                        <td>@a.HoraAdministrada</td>
+                        <td>@a.AdministradoPor</td>
+                        <td>@a.Observaciones</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#modalRegistrar@(a.Id)">
+                                Registrar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @foreach (var a in Model.Administraciones)
+        {
+            <div class="modal fade" id="modalRegistrar@(a.Id)" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Registrar — @a.NombreMedicamento @a.HoraProgramada</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form method="post" asp-action="Registrar">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="a.Id" value="@a.Id" />
+                            <input type="hidden" name="pacienteId" value="@Model.Paciente.Id" />
+                            <input type="hidden" name="fecha" value="@Model.Fecha.ToString("yyyy-MM-dd")" />
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label">¿Tomado?</label>
+                                    <select name="a.Tomado" class="form-select">
+                                        <option value="true">Sí</option>
+                                        <option value="false">No</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Hora administrada</label>
+                                    <input type="time" name="a.HoraAdministrada" class="form-control" value="@a.HoraAdministrada" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Administrado por</label>
+                                    <input type="text" name="a.AdministradoPor" class="form-control" value="@a.AdministradoPor" placeholder="Ej: Enf. García" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Observaciones</label>
+                                    <textarea name="a.Observaciones" class="form-control" rows="2">@a.Observaciones</textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

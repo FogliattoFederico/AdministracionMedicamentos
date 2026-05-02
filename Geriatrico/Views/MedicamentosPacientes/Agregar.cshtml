@@ -1,0 +1,86 @@
+﻿@model Geriatrico.Models.Dominio.MedicamentoPaciente
+
+<div class="container mt-4">
+    <h2>Asignar Medicamento</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <input asp-for="PacienteId" type="hidden" />
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Medicamento</label>
+                <select asp-for="MedicamentoId" class="form-select">
+                    <option value="">-- Seleccionar --</option>
+                    @foreach (var m in ViewBag.Medicamentos)
+                    {
+                        <option value="@m.Id">@m.Nombre - @m.Presentacion</option>
+                    }
+                </select>
+                <span asp-validation-for="MedicamentoId" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Vía de administración</label>
+                <select asp-for="Via" class="form-select">
+                    <option value="">-- Seleccionar --</option>
+                    <option value="Oral">Oral</option>
+                    <option value="Inyectable">Inyectable</option>
+                    <option value="Tópica">Tópica</option>
+                    <option value="Sublingual">Sublingual</option>
+                    <option value="Inhalatoria">Inhalatoria</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Dosis</label>
+                <input asp-for="Dosis" class="form-control" placeholder="Ej: 1 comprimido" />
+                <span asp-validation-for="Dosis" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Frecuencia</label>
+                <input asp-for="Frecuencia" class="form-control" placeholder="Ej: Cada 8 horas" />
+                <span asp-validation-for="Frecuencia" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Horarios</label>
+                <input asp-for="Horarios" class="form-control" placeholder="Ej: 08:00, 14:00, 20:00" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Fecha de inicio</label>
+                <input asp-for="FechaInicio" type="date" class="form-control" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Fecha de fin</label>
+                <input asp-for="FechaFin" type="date" class="form-control" />
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Prescripto por</label>
+                <input asp-for="PrescriptoPor" class="form-control" placeholder="Ej: Dr. Pérez" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Indicación</label>
+            <textarea asp-for="Indicacion" class="form-control" rows="3" placeholder="Motivo de la prescripción"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-controller="Pacientes" asp-action="Detalle" asp-route-id="@Model.PacienteId" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

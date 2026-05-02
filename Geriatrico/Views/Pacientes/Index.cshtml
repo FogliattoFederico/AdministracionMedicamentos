@@ -1,0 +1,94 @@
+﻿@model Geriatrico.Models.ViewModels.PacienteListaViewModel
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Pacientes</h2>
+        <a asp-action="Agregar" class="btn btn-primary">+ Nuevo Paciente</a>
+    </div>
+
+    @if (TempData["Exito"] != null)
+    {
+        <div class="alert alert-success">@TempData["Exito"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form method="get" class="mb-3">
+        <div class="d-flex gap-2">
+            <input type="text" name="buscar" value="@Model.Buscar"
+                   class="form-control" placeholder="Buscar por nombre, apellido o DNI..." />
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            @if (!string.IsNullOrWhiteSpace(Model.Buscar))
+            {
+                <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+            }
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Habitación</th>
+                <th>Obra Social</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Pacientes)
+            {
+                <tr>
+                    <td>@p.Apellido</td>
+                    <td>@p.Nombre</td>
+                    <td>@p.Dni</td>
+                    <td>@p.Habitacion</td>
+                    <td>@p.ObraSocial</td>
+                    <td>@p.Edad</td>
+                    <td>
+                        <a asp-action="Detalle" asp-route-id="@p.Id" class="btn btn-sm btn-info">Ver</a>
+                        <a asp-action="Modificar" asp-route-id="@p.Id" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Eliminar" asp-route-id="@p.Id" class="btn btn-sm btn-danger"
+                           onclick="return confirm('¿Dar de baja al paciente?')">Baja</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (Model.TotalPaginas > 1)
+    {
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(!Model.TienePaginaAnterior ? "disabled" : "")">
+                    <a class="page-link" asp-action="Index"
+                       asp-route-pagina="@(Model.PaginaActual - 1)"
+                       asp-route-buscar="@Model.Buscar">Anterior</a>
+                </li>
+
+                @for (int i = 1; i <= Model.TotalPaginas; i++)
+                {
+                    <li class="page-item @(i == Model.PaginaActual ? "active" : "")">
+                        <a class="page-link" asp-action="Index"
+                           asp-route-pagina="@i"
+                           asp-route-buscar="@Model.Buscar">@i</a>
+                    </li>
+                }
+
+                <li class="page-item @(!Model.TienePaginaSiguiente ? "disabled" : "")">
+                    <a class="page-link" asp-action="Index"
+                       asp-route-pagina="@(Model.PaginaActual + 1)"
+                       asp-route-buscar="@Model.Buscar">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>
