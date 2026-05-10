@@ -1,21 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\",
+  "WorkspaceRootPath": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\views\\medicamentospacientes\\modificar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\medicamentospacientes\\modificar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\desktop\\programacion\\proyectos\\administracionmedicamentos\\geriatrico\\_docs\\database.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\_docs\\database.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\views\\medicamentospacientes\\agregar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\medicamentospacientes\\agregar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\desktop\\programacion\\proyectos\\administracionmedicamentos\\geriatrico\\models\\negocio\\administracionnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\models\\negocio\\administracionnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\models\\negocio\\medicamentopacientenegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\desktop\\programacion\\proyectos\\administracionmedicamentos\\geriatrico\\models\\negocio\\medicamentopacientenegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\models\\negocio\\medicamentopacientenegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\controllers\\medicamentospacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\desktop\\programacion\\proyectos\\administracionmedicamentos\\geriatrico\\views\\medicamentospacientes\\modificar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\medicamentospacientes\\modificar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\desktop\\programacion\\proyectos\\administracionmedicamentos\\geriatrico\\views\\medicamentospacientes\\agregar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\medicamentospacientes\\agregar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\desktop\\programacion\\proyectos\\administracionmedicamentos\\geriatrico\\controllers\\medicamentospacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\controllers\\medicamentospacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,37 +50,62 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "database.md",
+              "DocumentMoniker": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\_docs\\database.md",
+              "RelativeDocumentMoniker": "Geriatrico\\_docs\\database.md",
+              "ToolTip": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\_docs\\database.md",
+              "RelativeToolTip": "Geriatrico\\_docs\\database.md",
+              "ViewState": "AgIAAO4AAAAAAAAAAAAUwAIBAADNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-05-10T23:28:24.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdministracionNegocio.cs",
+              "DocumentMoniker": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Models\\Negocio\\AdministracionNegocio.cs",
+              "RelativeDocumentMoniker": "Geriatrico\\Models\\Negocio\\AdministracionNegocio.cs",
+              "ToolTip": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Models\\Negocio\\AdministracionNegocio.cs",
+              "RelativeToolTip": "Geriatrico\\Models\\Negocio\\AdministracionNegocio.cs",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAwwLkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T23:19:40.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MedicamentoPacienteNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
+              "DocumentMoniker": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
               "RelativeDocumentMoniker": "Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
+              "ToolTip": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
               "RelativeToolTip": "Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
-              "ViewState": "AgIAAHcAAAAAAAAAAAAxwJAAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAxwJAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-10T01:18:05.871Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Agregar.cshtml",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
+              "DocumentMoniker": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
               "RelativeDocumentMoniker": "Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
+              "ToolTip": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
               "RelativeToolTip": "Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
               "ViewState": "AgIAAKoAAAAAAAAAAAAAwLcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-10T00:47:51.31Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T00:47:51.31Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Modificar.cshtml",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
+              "DocumentMoniker": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
               "RelativeDocumentMoniker": "Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
+              "ToolTip": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
               "RelativeToolTip": "Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
               "ViewState": "AgIAALEAAAAAAAAAAAAAwMEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -81,16 +114,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MedicamentosPacientesController.cs",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
+              "DocumentMoniker": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
               "RelativeDocumentMoniker": "Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
+              "ToolTip": "C:\\Users\\fedef\\Desktop\\Programacion\\Proyectos\\AdministracionMedicamentos\\Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
               "RelativeToolTip": "Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAowCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T00:28:04.358Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T00:28:04.358Z"
             }
           ]
         },

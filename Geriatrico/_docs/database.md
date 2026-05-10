@@ -31,18 +31,23 @@ CREATE TABLE medicamentos (
 );
 
 CREATE TABLE medicamentos_pacientes (
-    id              INT PRIMARY KEY IDENTITY(1,1),
-    paciente_id     INT NOT NULL,
-    medicamento_id  INT NOT NULL,
-    dosis           VARCHAR(100) NOT NULL,
-    frecuencia      VARCHAR(100) NOT NULL,
-    horarios        VARCHAR(200),
-    via             VARCHAR(50),
-    indicacion      TEXT,
-    fecha_inicio    DATE NOT NULL,
-    fecha_fin       DATE,
-    activo          BIT DEFAULT 1,
-    prescripto_por  VARCHAR(100),
+    id                  INT PRIMARY KEY IDENTITY(1,1),
+    paciente_id         INT NOT NULL,
+    medicamento_id      INT NOT NULL,
+    dosis               VARCHAR(100) NOT NULL,
+    frecuencia          VARCHAR(100) NOT NULL,
+    horarios            VARCHAR(200),
+    via                 VARCHAR(50),
+    indicacion          TEXT,
+    fecha_inicio        DATE NOT NULL,
+    fecha_fin           DATE,
+    activo              BIT DEFAULT 1,
+    prescripto_por      VARCHAR(100),
+    tipo_frecuencia     VARCHAR(20) DEFAULT 'diaria',
+    dias_semana         VARCHAR(100),
+    intervalo_dias      INT,
+    dia_mes             INT,
+    fecha_proxima_toma  DATE,
     FOREIGN KEY (paciente_id) REFERENCES pacientes(id),
     FOREIGN KEY (medicamento_id) REFERENCES medicamentos(id)
 );
@@ -134,144 +139,121 @@ VALUES
 -- MEDICAMENTOS POR PACIENTE
 -- =============================================
 
--- Juan Pérez (dni 11111111) - Hipertensión, Colesterol
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '11111111' AND m.nombre = 'Enalapril';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '11111111' AND m.nombre = 'Simvastatina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Prevención cardiovascular', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '11111111' AND m.nombre = 'Aspirina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '11111111' AND m.nombre = 'Enalapril';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '11111111' AND m.nombre = 'Simvastatina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Prevención cardiovascular', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '11111111' AND m.nombre = 'Aspirina';
 
--- Ana López (dni 22222222) - Diabetes, Hipertensión, Ansiedad
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 12 horas', '08:00, 20:00', 'Oral', 'Diabetes tipo 2', '2024-01-01', 'Dra. López' FROM pacientes p, medicamentos m WHERE p.dni = '22222222' AND m.nombre = 'Metformina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dra. López' FROM pacientes p, medicamentos m WHERE p.dni = '22222222' AND m.nombre = 'Losartán';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Ansiedad', '2024-01-01', 'Dra. López' FROM pacientes p, medicamentos m WHERE p.dni = '22222222' AND m.nombre = 'Lorazepam';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 12 horas', '08:00, 20:00', 'Oral', 'Diabetes tipo 2', '2024-01-01', 'Dra. López', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '22222222' AND m.nombre = 'Metformina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dra. López', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '22222222' AND m.nombre = 'Losartán';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Ansiedad', '2024-01-01', 'Dra. López', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '22222222' AND m.nombre = 'Lorazepam';
 
--- Carlos Ramírez (dni 33333333) - Hipertensión, Anticoagulación
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '33333333' AND m.nombre = 'Atenolol';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Anticoagulación', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '33333333' AND m.nombre = 'Warfarina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '33333333' AND m.nombre = 'Atenolol';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Anticoagulación', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '33333333' AND m.nombre = 'Warfarina';
 
--- Susana Torres (dni 44444444) - Hipotiroidismo, Osteoporosis
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipotiroidismo', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '44444444' AND m.nombre = 'Levotiroxina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Osteoporosis', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '44444444' AND m.nombre = 'Calcio + Vit D';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipotiroidismo', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '44444444' AND m.nombre = 'Levotiroxina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Osteoporosis', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '44444444' AND m.nombre = 'Calcio + Vit D';
 
--- Ricardo Sánchez (dni 55555555) - Diabetes, Hipertensión
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Diabetes tipo 2', '2024-01-01', 'Dra. Martínez' FROM pacientes p, medicamentos m WHERE p.dni = '55555555' AND m.nombre = 'Glibenclamida';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dra. Martínez' FROM pacientes p, medicamentos m WHERE p.dni = '55555555' AND m.nombre = 'Amlodipina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Diabetes tipo 2', '2024-01-01', 'Dra. Martínez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '55555555' AND m.nombre = 'Glibenclamida';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dra. Martínez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '55555555' AND m.nombre = 'Amlodipina';
 
--- Marta Gómez (dni 66666666) - Insuficiencia cardíaca
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Insuficiencia cardíaca', '2024-01-01', 'Dra. Martínez' FROM pacientes p, medicamentos m WHERE p.dni = '66666666' AND m.nombre = 'Furosemida';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Insuficiencia cardíaca', '2024-01-01', 'Dra. Martínez' FROM pacientes p, medicamentos m WHERE p.dni = '66666666' AND m.nombre = 'Espironolactona';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Insuficiencia cardíaca', '2024-01-01', 'Dra. Martínez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '66666666' AND m.nombre = 'Furosemida';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Insuficiencia cardíaca', '2024-01-01', 'Dra. Martínez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '66666666' AND m.nombre = 'Espironolactona';
 
--- Luis Díaz (dni 77777777) - Alzheimer, Trastorno conductual
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Alzheimer', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '77777777' AND m.nombre = 'Donepecilo';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Trastorno conductual', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '77777777' AND m.nombre = 'Haloperidol';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Alzheimer', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '77777777' AND m.nombre = 'Donepecilo';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Trastorno conductual', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '77777777' AND m.nombre = 'Haloperidol';
 
--- Carmen Flores (dni 88888888) - Hipertensión, Colesterol
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '88888888' AND m.nombre = 'Enalapril';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '88888888' AND m.nombre = 'Simvastatina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '88888888' AND m.nombre = 'Enalapril';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '88888888' AND m.nombre = 'Simvastatina';
 
--- Héctor Morales (dni 99999999) - Hipertensión, Prevención cardiovascular
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '99999999' AND m.nombre = 'Losartán';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Prevención cardiovascular', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '99999999' AND m.nombre = 'Aspirina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '99999999' AND m.nombre = 'Losartán';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Prevención cardiovascular', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '99999999' AND m.nombre = 'Aspirina';
 
--- Patricia Jiménez (dni 10101010) - Diabetes, Osteoporosis
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 12 horas', '08:00, 20:00', 'Oral', 'Diabetes tipo 2', '2024-01-01', 'Dra. López' FROM pacientes p, medicamentos m WHERE p.dni = '10101010' AND m.nombre = 'Metformina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Osteoporosis', '2024-01-01', 'Dra. López' FROM pacientes p, medicamentos m WHERE p.dni = '10101010' AND m.nombre = 'Calcio + Vit D';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 12 horas', '08:00, 20:00', 'Oral', 'Diabetes tipo 2', '2024-01-01', 'Dra. López', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '10101010' AND m.nombre = 'Metformina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Osteoporosis', '2024-01-01', 'Dra. López', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '10101010' AND m.nombre = 'Calcio + Vit D';
 
--- Alberto Ruiz (dni 11223344) - Hipertensión
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '11223344' AND m.nombre = 'Atenolol';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Gastritis', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '11223344' AND m.nombre = 'Omeprazol';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '11223344' AND m.nombre = 'Atenolol';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Gastritis', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '11223344' AND m.nombre = 'Omeprazol';
 
--- Norma Herrera (dni 22334455) - Hipotiroidismo
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipotiroidismo', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '22334455' AND m.nombre = 'Levotiroxina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '22334455' AND m.nombre = 'Simvastatina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipotiroidismo', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '22334455' AND m.nombre = 'Levotiroxina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '22334455' AND m.nombre = 'Simvastatina';
 
--- Osvaldo Castro (dni 33445566) - Insuficiencia cardíaca
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Insuficiencia cardíaca', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '33445566' AND m.nombre = 'Furosemida';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '33445566' AND m.nombre = 'Amlodipina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Insuficiencia cardíaca', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '33445566' AND m.nombre = 'Furosemida';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '33445566' AND m.nombre = 'Amlodipina';
 
--- Graciela Romero (dni 44556677) - Ansiedad, Osteoporosis
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Ansiedad', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '44556677' AND m.nombre = 'Lorazepam';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Osteoporosis', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '44556677' AND m.nombre = 'Calcio + Vit D';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Ansiedad', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '44556677' AND m.nombre = 'Lorazepam';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Osteoporosis', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '44556677' AND m.nombre = 'Calcio + Vit D';
 
--- Domingo Vargas (dni 55667788) - Hipertensión
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dra. Martínez' FROM pacientes p, medicamentos m WHERE p.dni = '55667788' AND m.nombre = 'Amlodipina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Prevención cardiovascular', '2024-01-01', 'Dra. Martínez' FROM pacientes p, medicamentos m WHERE p.dni = '55667788' AND m.nombre = 'Aspirina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dra. Martínez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '55667788' AND m.nombre = 'Amlodipina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Prevención cardiovascular', '2024-01-01', 'Dra. Martínez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '55667788' AND m.nombre = 'Aspirina';
 
--- Beatriz Medina (dni 66778899) - Anticoagulación
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Anticoagulación', '2024-01-01', 'Dra. Martínez' FROM pacientes p, medicamentos m WHERE p.dni = '66778899' AND m.nombre = 'Warfarina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dra. Martínez' FROM pacientes p, medicamentos m WHERE p.dni = '66778899' AND m.nombre = 'Atenolol';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Anticoagulación', '2024-01-01', 'Dra. Martínez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '66778899' AND m.nombre = 'Warfarina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dra. Martínez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '66778899' AND m.nombre = 'Atenolol';
 
--- Raúl Aguilar (dni 77889900) - Alzheimer
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Alzheimer', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '77889900' AND m.nombre = 'Donepecilo';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Trastorno conductual', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '77889900' AND m.nombre = 'Haloperidol';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Alzheimer', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '77889900' AND m.nombre = 'Donepecilo';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Trastorno conductual', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '77889900' AND m.nombre = 'Haloperidol';
 
--- Elsa Ortiz (dni 88990011) - Colesterol, Hipertensión
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '88990011' AND m.nombre = 'Simvastatina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '88990011' AND m.nombre = 'Losartán';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '88990011' AND m.nombre = 'Simvastatina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '88990011' AND m.nombre = 'Losartán';
 
--- Norberto Molina (dni 99001122) - Hipertensión, Gastritis
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '99001122' AND m.nombre = 'Enalapril';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 cápsula', 'Cada 24 horas', '08:00', 'Oral', 'Gastritis', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '99001122' AND m.nombre = 'Omeprazol';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '99001122' AND m.nombre = 'Enalapril';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 cápsula', 'Cada 24 horas', '08:00', 'Oral', 'Gastritis', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '99001122' AND m.nombre = 'Omeprazol';
 
--- Estela Suárez (dni 10203040) - Osteoporosis, Ansiedad
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Osteoporosis', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '10203040' AND m.nombre = 'Calcio + Vit D';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Ansiedad', '2024-01-01', 'Dr. García' FROM pacientes p, medicamentos m WHERE p.dni = '10203040' AND m.nombre = 'Alprazolam';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Osteoporosis', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '10203040' AND m.nombre = 'Calcio + Vit D';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Ansiedad', '2024-01-01', 'Dr. García', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '10203040' AND m.nombre = 'Alprazolam';
 
--- María González (dni 12345678) - Hipertensión, Gastritis
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '12345678' AND m.nombre = 'Enalapril';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 cápsula', 'Cada 24 horas', '08:00', 'Oral', 'Gastritis', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '12345678' AND m.nombre = 'Omeprazol';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '12345678' AND m.nombre = 'Enalapril';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 cápsula', 'Cada 24 horas', '08:00', 'Oral', 'Gastritis', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '12345678' AND m.nombre = 'Omeprazol';
 
--- Roberto Fernández (dni 23456789) - Diabetes
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 12 horas', '08:00, 20:00', 'Oral', 'Diabetes tipo 2', '2024-01-01', 'Dra. López' FROM pacientes p, medicamentos m WHERE p.dni = '23456789' AND m.nombre = 'Metformina';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dra. López' FROM pacientes p, medicamentos m WHERE p.dni = '23456789' AND m.nombre = 'Simvastatina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 12 horas', '08:00, 20:00', 'Oral', 'Diabetes tipo 2', '2024-01-01', 'Dra. López', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '23456789' AND m.nombre = 'Metformina';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Colesterol', '2024-01-01', 'Dra. López', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '23456789' AND m.nombre = 'Simvastatina';
 
--- Elena Martínez (dni 34567890) - Ansiedad, Hipertensión
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Ansiedad', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '34567890' AND m.nombre = 'Alprazolam';
-INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por)
-SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez' FROM pacientes p, medicamentos m WHERE p.dni = '34567890' AND m.nombre = 'Losartán';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '22:00', 'Oral', 'Ansiedad', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '34567890' AND m.nombre = 'Alprazolam';
+INSERT INTO medicamentos_pacientes (paciente_id, medicamento_id, dosis, frecuencia, horarios, via, indicacion, fecha_inicio, prescripto_por, tipo_frecuencia)
+SELECT p.id, m.id, '1 comprimido', 'Cada 24 horas', '08:00', 'Oral', 'Hipertensión', '2024-01-01', 'Dr. Pérez', 'diaria' FROM pacientes p, medicamentos m WHERE p.dni = '34567890' AND m.nombre = 'Losartán';
