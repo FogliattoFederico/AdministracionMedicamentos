@@ -12,11 +12,11 @@ public class MedicamentoPaciente
     public int MedicamentoId { get; set; }
 
     [Required(ErrorMessage = "La dosis es obligatoria")]
-    [StringLength(100, ErrorMessage = "La dosis no puede superar los 100 caracteres")]
+    [StringLength(100)]
     public string Dosis { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "La frecuencia es obligatoria")]
-    [StringLength(100, ErrorMessage = "La frecuencia no puede superar los 100 caracteres")]
+    [StringLength(100)]
     public string Frecuencia { get; set; } = string.Empty;
 
     [StringLength(200)]
@@ -42,6 +42,24 @@ public class MedicamentoPaciente
     [Display(Name = "Prescripto por")]
     public string? PrescriptoPor { get; set; }
 
+    // Frecuencia
+    [Display(Name = "Tipo de frecuencia")]
+    public string TipoFrecuencia { get; set; } = "diaria";
+
+    [Display(Name = "Días de la semana")]
+    public string? DiasSemana { get; set; }
+
+    [Display(Name = "Cada cuántos días")]
+    public int? IntervaloDias { get; set; }
+
+    [Display(Name = "Día del mes")]
+    public int? DiaMes { get; set; }
+
+    [DataType(DataType.Date)]
+    [Display(Name = "Fecha próxima toma")]
+    public DateTime? FechaProximaToma { get; set; }
+
+    // Para mostrar en la vista
     public string? NombreMedicamento { get; set; }
     public string? Presentacion { get; set; }
 }

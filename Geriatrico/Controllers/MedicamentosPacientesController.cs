@@ -38,6 +38,7 @@ public class MedicamentosPacientesController : Controller
     public IActionResult Agregar(MedicamentoPaciente mp)
     {
         if (!EstaLogueado()) return RedirectToAction("Login", "Account");
+
         try
         {
             if (!ModelState.IsValid)

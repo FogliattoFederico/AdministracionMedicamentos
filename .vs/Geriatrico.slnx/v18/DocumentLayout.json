@@ -3,40 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\views\\medicamentospacientes\\modificar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\medicamentospacientes\\modificar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\_docs\\utilidades.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\_docs\\utilidades.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\views\\medicamentospacientes\\agregar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\medicamentospacientes\\agregar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\models\\negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\models\\negocio\\usuarionegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\models\\negocio\\medicamentopacientenegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\models\\negocio\\medicamentopacientenegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\views\\account\\recuperar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\account\\recuperar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\models\\viewmodels\\recuperarpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\models\\viewmodels\\recuperarpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\views\\usuarios\\resetearpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\views\\usuarios\\resetearpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\models\\viewmodels\\resetpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\models\\viewmodels\\resetpasswordviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|c:\\users\\fedef\\source\\repos\\geriatrico\\geriatrico\\controllers\\medicamentospacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88C58659-28E6-2905-AE7E-3C7D532CC341}|Geriatrico\\Geriatrico.csproj|solutionrelative:geriatrico\\controllers\\medicamentospacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,119 +42,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "utilidades.md",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\_docs\\utilidades.md",
-              "RelativeDocumentMoniker": "Geriatrico\\_docs\\utilidades.md",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\_docs\\utilidades.md",
-              "RelativeToolTip": "Geriatrico\\_docs\\utilidades.md",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAC8AAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-05-02T23:21:26.068Z",
+              "DocumentIndex": 2,
+              "Title": "MedicamentoPacienteNegocio.cs",
+              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
+              "RelativeDocumentMoniker": "Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
+              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
+              "RelativeToolTip": "Geriatrico\\Models\\Negocio\\MedicamentoPacienteNegocio.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAxwJAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T01:18:05.871Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Recuperar.cshtml",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\Account\\Recuperar.cshtml",
-              "RelativeDocumentMoniker": "Geriatrico\\Views\\Account\\Recuperar.cshtml",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\Account\\Recuperar.cshtml",
-              "RelativeToolTip": "Geriatrico\\Views\\Account\\Recuperar.cshtml",
-              "ViewState": "AgIAADAAAAAAAAAAAADwv0YAAAAHAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Agregar.cshtml",
+              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
+              "RelativeDocumentMoniker": "Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
+              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
+              "RelativeToolTip": "Geriatrico\\Views\\MedicamentosPacientes\\Agregar.cshtml",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAAwLcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-02T23:20:38.476Z",
+              "WhenOpened": "2026-05-10T00:47:51.31Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Geriatrico\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Geriatrico\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAADwv2YAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T23:20:12.178Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RecuperarPasswordViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\ViewModels\\RecuperarPasswordViewModel.cs",
-              "RelativeDocumentMoniker": "Geriatrico\\Models\\ViewModels\\RecuperarPasswordViewModel.cs",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\ViewModels\\RecuperarPasswordViewModel.cs",
-              "RelativeToolTip": "Geriatrico\\Models\\ViewModels\\RecuperarPasswordViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T23:19:57.596Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\Usuarios\\Index.cshtml",
-              "RelativeDocumentMoniker": "Geriatrico\\Views\\Usuarios\\Index.cshtml",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\Usuarios\\Index.cshtml",
-              "RelativeToolTip": "Geriatrico\\Views\\Usuarios\\Index.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACUAAAAZAAAAAAAAAA==",
+              "Title": "Modificar.cshtml",
+              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
+              "RelativeDocumentMoniker": "Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
+              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
+              "RelativeToolTip": "Geriatrico\\Views\\MedicamentosPacientes\\Modificar.cshtml",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAwMEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-02T23:13:41.92Z",
+              "WhenOpened": "2026-05-10T00:41:11.779Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "Geriatrico\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "Geriatrico\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAALkAAAAAAAAAAADwv88AAAAFAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "MedicamentosPacientesController.cs",
+              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
+              "RelativeDocumentMoniker": "Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
+              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
+              "RelativeToolTip": "Geriatrico\\Controllers\\MedicamentosPacientesController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T23:13:04.113Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsuarioNegocio.cs",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\Negocio\\UsuarioNegocio.cs",
-              "RelativeDocumentMoniker": "Geriatrico\\Models\\Negocio\\UsuarioNegocio.cs",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\Negocio\\UsuarioNegocio.cs",
-              "RelativeToolTip": "Geriatrico\\Models\\Negocio\\UsuarioNegocio.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAA2wOQAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T23:12:48.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ResetearPassword.cshtml",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\Usuarios\\ResetearPassword.cshtml",
-              "RelativeDocumentMoniker": "Geriatrico\\Views\\Usuarios\\ResetearPassword.cshtml",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Views\\Usuarios\\ResetearPassword.cshtml",
-              "RelativeToolTip": "Geriatrico\\Views\\Usuarios\\ResetearPassword.cshtml",
-              "ViewState": "AgIAAA4AAAAAAAAAAADwvyQAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-02T23:13:27.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ResetPasswordViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\ViewModels\\ResetPasswordViewModel.cs",
-              "RelativeDocumentMoniker": "Geriatrico\\Models\\ViewModels\\ResetPasswordViewModel.cs",
-              "ToolTip": "C:\\Users\\fedef\\source\\repos\\Geriatrico\\Geriatrico\\Models\\ViewModels\\ResetPasswordViewModel.cs",
-              "RelativeToolTip": "Geriatrico\\Models\\ViewModels\\ResetPasswordViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T23:12:35.152Z",
+              "WhenOpened": "2026-05-10T00:28:04.358Z",
               "EditorCaption": ""
             }
           ]

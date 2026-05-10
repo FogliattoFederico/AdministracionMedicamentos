@@ -45,10 +45,10 @@ public class AdministracionNegocio
                 MedicamentoPacId = (int)reader["medicamento_pac_id"],
                 Fecha = (DateTime)reader["fecha"],
                 HoraProgramada = reader["hora_programada"].ToString()!,
-                HoraAdministrada = reader["hora_administrada"].ToString(),
-                AdministradoPor = reader["administrado_por"].ToString(),
+                HoraAdministrada = reader["hora_administrada"] == DBNull.Value ? null : reader["hora_administrada"].ToString(),
+                AdministradoPor = reader["administrado_por"] == DBNull.Value ? null : reader["administrado_por"].ToString(),
                 Tomado = (bool)reader["tomado"],
-                Observaciones = reader["observaciones"].ToString(),
+                Observaciones = reader["observaciones"] == DBNull.Value ? null : reader["observaciones"].ToString(),
                 NombreMedicamento = reader["nombre_medicamento"].ToString(),
                 Dosis = reader["dosis"].ToString()
             });
@@ -57,15 +57,16 @@ public class AdministracionNegocio
         return lista;
     }
 
-    // GENERAR ADMINISTRACIONES DEL DIA PARA UN PACIENTE
+    // GENERAR ADMINISTRACIONES DEL DIA
     public void GenerarDelDia(int pacienteId, DateTime fecha)
     {
         using var conn = new SqlConnection(_connectionString);
         conn.Open();
 
-        // Traer medicamentos activos del paciente con sus horarios
         var cmdMeds = new SqlCommand(@"
-            SELECT id, horarios FROM medicamentos_pacientes
+            SELECT id, horarios, tipo_frecuencia, dias_semana, 
+                   intervalo_dias, dia_mes, fecha_proxima_toma
+            FROM medicamentos_pacientes
             WHERE paciente_id = @PacienteId AND activo = 1
             AND fecha_inicio <= @Fecha
             AND (fecha_fin IS NULL OR fecha_fin >= @Fecha)", conn);
@@ -75,20 +76,70 @@ public class AdministracionNegocio
 
         var reader = cmdMeds.ExecuteReader();
 
-        var medicamentos = new List<(int Id, string Horarios)>();
+        var medicamentos = new List<(int Id, string Horarios, string TipoFrecuencia, string? DiasSemana, int? IntervaloDias, int? DiaMes, DateTime? FechaProximaToma)>();
+
         while (reader.Read())
         {
             medicamentos.Add((
                 (int)reader["id"],
-                reader["horarios"].ToString() ?? ""
+                reader["horarios"].ToString() ?? "08:00",
+                reader["tipo_frecuencia"] == DBNull.Value ? "diaria" : reader["tipo_frecuencia"].ToString()!,
+                reader["dias_semana"] == DBNull.Value ? null : reader["dias_semana"].ToString(),
+                reader["intervalo_dias"] == DBNull.Value ? null : (int?)reader["intervalo_dias"],
+                reader["dia_mes"] == DBNull.Value ? null : (int?)reader["dia_mes"],
+                reader["fecha_proxima_toma"] == DBNull.Value ? null : (DateTime?)reader["fecha_proxima_toma"]
             ));
         }
         reader.Close();
 
-        // Por cada medicamento y cada horario, crear una administracion si no existe
+        // Nombres de días en español
+        var nombresDias = new Dictionary<DayOfWeek, string>
+        {
+            { DayOfWeek.Monday,    "Lunes" },
+            { DayOfWeek.Tuesday,   "Martes" },
+            { DayOfWeek.Wednesday, "Miércoles" },
+            { DayOfWeek.Thursday,  "Jueves" },
+            { DayOfWeek.Friday,    "Viernes" },
+            { DayOfWeek.Saturday,  "Sábado" },
+            { DayOfWeek.Sunday,    "Domingo" }
+        };
+
+        var diaHoy = nombresDias[fecha.DayOfWeek];
+
         foreach (var med in medicamentos)
         {
+            var correspondeHoy = false;
+
+            switch (med.TipoFrecuencia)
+            {
+                case "diaria":
+                    correspondeHoy = true;
+                    break;
+
+                case "semanal":
+                    if (!string.IsNullOrWhiteSpace(med.DiasSemana))
+                    {
+                        var dias = med.DiasSemana.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                      .Select(d => d.Trim());
+                        correspondeHoy = dias.Contains(diaHoy);
+                    }
+                    break;
+
+                case "intervalo":
+                    if (med.FechaProximaToma.HasValue)
+                        correspondeHoy = med.FechaProximaToma.Value.Date == fecha.Date;
+                    break;
+
+                case "mensual":
+                    if (med.DiaMes.HasValue)
+                        correspondeHoy = med.DiaMes.Value == fecha.Day;
+                    break;
+            }
+
+            if (!correspondeHoy) continue;
+
             var horarios = med.Horarios.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
             foreach (var horario in horarios)
             {
                 var hora = horario.Trim();
@@ -114,6 +165,21 @@ public class AdministracionNegocio
                     cmdInsert.Parameters.AddWithValue("@Hora", hora);
 
                     cmdInsert.ExecuteNonQuery();
+
+                    // Si es por intervalo, actualizar fecha proxima toma
+                    if (med.TipoFrecuencia == "intervalo" && med.IntervaloDias.HasValue)
+                    {
+                        var nuevaFecha = fecha.Date.AddDays(med.IntervaloDias.Value);
+
+                        var cmdUpdate = new SqlCommand(@"
+                            UPDATE medicamentos_pacientes 
+                            SET fecha_proxima_toma = @NuevaFecha 
+                            WHERE id = @MedId", conn);
+
+                        cmdUpdate.Parameters.AddWithValue("@NuevaFecha", nuevaFecha);
+                        cmdUpdate.Parameters.AddWithValue("@MedId", med.Id);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
                 }
             }
         }
@@ -127,10 +193,10 @@ public class AdministracionNegocio
 
         var cmd = new SqlCommand(@"
             UPDATE administraciones SET
-                tomado           = @Tomado,
+                tomado            = @Tomado,
                 hora_administrada = @HoraAdministrada,
-                administrado_por = @AdministradoPor,
-                observaciones    = @Observaciones
+                administrado_por  = @AdministradoPor,
+                observaciones     = @Observaciones
             WHERE id = @Id", conn);
 
         cmd.Parameters.AddWithValue("@Id", a.Id);

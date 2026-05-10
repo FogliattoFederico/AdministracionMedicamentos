@@ -43,7 +43,7 @@
                 <input asp-for="Dosis" class="form-control" />
             </div>
             <div class="col-md-4 mb-3">
-                <label class="form-label">Frecuencia</label>
+                <label class="form-label">Descripción de frecuencia</label>
                 <input asp-for="Frecuencia" class="form-control" />
             </div>
             <div class="col-md-4 mb-3">
@@ -55,15 +55,72 @@
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label class="form-label">Fecha de inicio</label>
-                <input asp-for="FechaInicio" type="date" class="form-control" />
+                <input type="date" name="FechaInicio" id="FechaInicio" class="form-control"
+                       value="@(Model.FechaInicio == DateTime.MinValue ? DateTime.Today.ToString("yyyy-MM-dd") : Model.FechaInicio.ToString("yyyy-MM-dd"))" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
             </div>
             <div class="col-md-4 mb-3">
-                <label class="form-label">Fecha de fin</label>
+                <label class="form-label">Fecha de fin <small class="text-muted">(opcional)</small></label>
                 <input asp-for="FechaFin" type="date" class="form-control" />
             </div>
             <div class="col-md-4 mb-3">
                 <label class="form-label">Prescripto por</label>
                 <input asp-for="PrescriptoPor" class="form-control" />
+            </div>
+        </div>
+
+        <!-- TIPO DE FRECUENCIA -->
+        <div class="card mb-3">
+            <div class="card-header bg-light">
+                <strong>Frecuencia de administración</strong>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Tipo</label>
+                    <select asp-for="TipoFrecuencia" class="form-select" id="tipoFrecuencia">
+                        <option value="diaria">Diaria</option>
+                        <option value="semanal">Días específicos de la semana</option>
+                        <option value="intervalo">Cada X días</option>
+                        <option value="mensual">Mensual</option>
+                    </select>
+                </div>
+
+                <!-- SEMANAL -->
+                <div id="panelSemanal" style="display:none;">
+                    <label class="form-label">Días de la semana</label>
+                    <div class="d-flex flex-wrap gap-3 mb-2">
+                        @foreach (var dia in new[] { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" })
+                        {
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input dia-check" value="@dia" id="dia_@dia" />
+                                <label class="form-check-label" for="dia_@dia">@dia</label>
+                            </div>
+                        }
+                    </div>
+                    <input asp-for="DiasSemana" type="hidden" id="diasSemanaHidden" />
+                </div>
+
+                <!-- INTERVALO -->
+                <div id="panelIntervalo" style="display:none;">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Cada cuántos días</label>
+                            <input asp-for="IntervaloDias" type="number" min="1" class="form-control" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Fecha próxima toma <small class="text-muted">(se calcula automáticamente)</small></label>
+                            <input asp-for="FechaProximaToma" type="date" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MENSUAL -->
+                <div id="panelMensual" style="display:none;">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Día del mes</label>
+                        <input asp-for="DiaMes" type="number" min="1" max="31" class="form-control" />
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -80,4 +137,58 @@
 @section Scripts {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+
+            function mostrarPanel() {
+                var tipo = document.getElementById('tipoFrecuencia').value;
+                document.getElementById('panelSemanal').style.display  = tipo === 'semanal'   ? 'block' : 'none';
+                document.getElementById('panelIntervalo').style.display = tipo === 'intervalo' ? 'block' : 'none';
+                document.getElementById('panelMensual').style.display   = tipo === 'mensual'   ? 'block' : 'none';
+            }
+
+            function calcularFechaProximaToma() {
+                var fechaInicio = document.getElementById('FechaInicio').value;
+                var intervaloDias = document.getElementById('IntervaloDias').value;
+
+                if (fechaInicio && intervaloDias) {
+                    var fecha = new Date(fechaInicio);
+                    fecha.setDate(fecha.getDate() + parseInt(intervaloDias));
+
+                    var año = fecha.getFullYear();
+                    var mes = String(fecha.getMonth() + 1).padStart(2, '0');
+                    var dia = String(fecha.getDate()).padStart(2, '0');
+
+                    document.getElementById('FechaProximaToma').value = año + '-' + mes + '-' + dia;
+                }
+            }
+
+            document.getElementById('tipoFrecuencia').addEventListener('change', mostrarPanel);
+            document.getElementById('FechaInicio').addEventListener('change', calcularFechaProximaToma);
+            document.getElementById('IntervaloDias').addEventListener('change', calcularFechaProximaToma);
+
+            mostrarPanel();
+
+            // Precargar checkboxes días semana
+            var diasActuales = document.getElementById('diasSemanaHidden').value;
+            if (diasActuales) {
+                diasActuales.split(',').forEach(function(dia) {
+                    var checkbox = document.getElementById('dia_' + dia.trim());
+                    if (checkbox) checkbox.checked = true;
+                });
+            }
+
+            // Actualizar hidden cuando cambian los checkboxes
+            document.querySelectorAll('.dia-check').forEach(function(cb) {
+                cb.addEventListener('change', function() {
+                    var seleccionados = [];
+                    document.querySelectorAll('.dia-check:checked').forEach(function(c) {
+                        seleccionados.push(c.value);
+                    });
+                    document.getElementById('diasSemanaHidden').value = seleccionados.join(', ');
+                });
+            });
+
+        });
+    </script>
 }
